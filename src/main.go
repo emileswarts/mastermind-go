@@ -29,20 +29,14 @@ func generate_board(occupied_cells []cell) []cell {
 
 		default_cells[index].y = y
 		default_cells[index].x = x
-		default_cells[index].colour = ""
+
+		for _, occupied_cell := range occupied_cells {
+			if default_cells[index].x == occupied_cell.x && default_cells[index].y == occupied_cell.y {
+				default_cells[index].colour = occupied_cell.colour
+			}
+
+		}
 	}
-
-	// for row_index := 0; row_index < game_board_max_rows; row_index++ {
-	// 	for cell_index := 0; cell_index < game_board_max_cells_per_rows; cell_index++ {
-
-	// 	}
-	// for occupied_cell := range occupied_cells {
-	// 	if default_cell.x == occupied_cell.x && default_cell.y == occupied_cell.y {
-	// 		default_cells[default_cell_index] = occupied_cell
-	// 	}
-
-	// }
-	// }
 
 	return default_cells
 
