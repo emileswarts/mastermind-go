@@ -16,7 +16,7 @@ func scoreRow(currentBoard []cell, rowToTest int) []string {
 	cpuCells := findCPUCells(currentBoard)
 
 	for i, cpuCell := range cpuCells {
-		if currentBoard[i].colour == "" {
+		if cpuCell.colour == "" {
 			rowResult[0] = "CPU row not set"
 		} else if cellsForRow[i].x == cpuCell.x && cellsForRow[i].colour == cpuCell.colour {
 			rowResult[i] = "black"

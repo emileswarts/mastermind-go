@@ -65,3 +65,29 @@ func TestRightColoursWrongPlacementScore(t *testing.T) {
 	assert.Equal(t, "white", expectedResult[3])
 	assert.Equal(t, "white", expectedResult[4])
 }
+
+func TestMixRightColourAndPositionScore(t *testing.T) {
+	var score []string
+
+	occupied_cells := []cell{
+		{0, 0, "green"}, //black
+		{1, 0, "white"}, //white
+		{2, 0, "brown"}, // white
+		{3, 0, "blue"},  // white
+		{4, 0, "black"}, // nothing
+
+		{0, 12, "green"},
+		{1, 12, "yellow"},
+		{2, 12, "blue"},
+		{3, 12, "white"},
+		{4, 12, "brown"},
+	}
+	board := generate_board(occupied_cells)
+	score = scoreRow(board, 12)
+
+	assert.Equal(t, "black", score[0])
+	assert.Equal(t, "white", score[1])
+	assert.Equal(t, "white", score[2])
+	assert.Equal(t, "white", score[3])
+	assert.Equal(t, "", score[4])
+}
