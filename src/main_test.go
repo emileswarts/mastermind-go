@@ -8,9 +8,9 @@ import (
 
 func TestCPUCCreatehallengeRow(t *testing.T) {
 	challengeRow := CPUCreateChallengeRow()
-	assert.Equal(t, len(challengeRow), 5)
-	assert.Equal(t, challengeRow[0].x, 0)
-	assert.Equal(t, challengeRow[0].y, 11)
+	assert.Equal(t, 5, len(challengeRow))
+	assert.Equal(t, 0, challengeRow[0].x)
+	assert.Equal(t, 0, challengeRow[0].y)
 }
 
 func TestGenerateEmptyBoard(t *testing.T) {

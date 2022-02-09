@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 type cell struct {
@@ -45,22 +46,26 @@ func generate_board(occupied_cells []cell) []cell {
 func get_random_colour() string {
 	available_colours := [7]string{"blue", "yellow", "orange", "green", "brown", "white", "black"}
 
+	rand.Seed(time.Now().UnixNano())
 	return available_colours[rand.Intn(len(available_colours))]
 }
 
-func CPUCreateChallengeRow() [5]cell {
-	var cpu_colour_choice [5]cell
-	const game_board_max_rows int = 11
-
-	cpu_colour_choice[0] = cell{x: 0, y: game_board_max_rows, colour: get_random_colour()}
-	cpu_colour_choice[1] = cell{x: 1, y: game_board_max_rows, colour: get_random_colour()}
-	cpu_colour_choice[2] = cell{x: 2, y: game_board_max_rows, colour: get_random_colour()}
-	cpu_colour_choice[3] = cell{x: 3, y: game_board_max_rows, colour: get_random_colour()}
-	cpu_colour_choice[4] = cell{x: 4, y: game_board_max_rows, colour: get_random_colour()}
+func CPUCreateChallengeRow() []cell {
+	cpu_colour_choice := []cell{
+		{0, 0, get_random_colour()},
+		{1, 0, get_random_colour()},
+		{2, 0, get_random_colour()},
+		{3, 0, get_random_colour()},
+		{4, 0, get_random_colour()},
+	}
 
 	return cpu_colour_choice
 }
 
 func main() {
-	fmt.Println("Hello mastermind")
+	occupied_cells := CPUCreateChallengeRow()
+	board := generate_board(occupied_cells)
+	renderedBoard := render(board)
+
+	fmt.Println(renderedBoard)
 }
