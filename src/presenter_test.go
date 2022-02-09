@@ -25,7 +25,7 @@ func TestGenerateEmptyBoard(t *testing.T) {
 
 func TestGenerateBoardWithOneColour(t *testing.T) {
 	occupied_cells := []cell{
-		cell{0, 0, "blue"},
+		{0, 0, "blue"},
 	}
 
 	empty_board := generate_board(occupied_cells)
@@ -45,9 +45,9 @@ func TestGenerateBoardWithOneColour(t *testing.T) {
 
 func TestGenerateBoardWithMultipleColours(t *testing.T) {
 	occupied_cells := []cell{
-		cell{0, 0, "green"},
-		cell{1, 0, "white"},
-		cell{2, 0, "brown"},
+		{0, 0, "green"},
+		{1, 0, "white"},
+		{2, 0, "brown"},
 	}
 
 	empty_board := generate_board(occupied_cells)
