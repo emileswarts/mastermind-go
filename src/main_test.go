@@ -85,7 +85,28 @@ func TestGenerateBoardWithMultipleColours(t *testing.T) {
 func TestFindCellsInRow(t *testing.T) {
 	occupied_cells := []cell{}
 	emptyBoard := generate_board(occupied_cells)
-	expectedResult := []int{0, 1, 2, 3, 4}
+	expectedResult := []cell{
+		{0, 0, ""},
+		{1, 0, ""},
+		{2, 0, ""},
+		{3, 0, ""},
+		{4, 0, ""},
+	}
 
 	assert.Equal(t, expectedResult, findCellsInRow(emptyBoard, 0))
+}
+
+func TestFindCPUCells(t *testing.T) {
+	occupied_cells := []cell{}
+	emptyBoard := generate_board(occupied_cells)
+	expectedResult := []cell{
+		{0, 0, ""},
+		{1, 0, ""},
+		{2, 0, ""},
+		{3, 0, ""},
+		{4, 0, ""},
+	}
+	result := findCPUCells(emptyBoard)
+
+	assert.Equal(t, expectedResult, result)
 }

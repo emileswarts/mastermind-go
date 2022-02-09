@@ -12,13 +12,17 @@ type cell struct {
 	colour string
 }
 
-func findCellsInRow(board []cell, rowNumber int) []int {
-	cellsInRow := make([]int, 5)
+func findCPUCells(board []cell) []cell {
+	return findCellsInRow(board, 0)
+}
+
+func findCellsInRow(board []cell, rowNumber int) []cell {
+	cellsInRow := make([]cell, 5)
 
 	x := 0
-	for i, cell := range board {
+	for _, cell := range board {
 		if cell.y == rowNumber {
-			cellsInRow[x] = i
+			cellsInRow[x] = cell
 			x = x + 1
 		}
 
