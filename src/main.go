@@ -12,6 +12,21 @@ type cell struct {
 	colour string
 }
 
+func findCellsInRow(board []cell, rowNumber int) []int {
+	cellsInRow := make([]int, 5)
+
+	x := 0
+	for i, cell := range board {
+		if cell.y == rowNumber {
+			cellsInRow[x] = i
+			x = x + 1
+		}
+
+	}
+
+	return cellsInRow
+}
+
 func generate_board(occupied_cells []cell) []cell {
 	default_cells := make([]cell, 65)
 	x := 0

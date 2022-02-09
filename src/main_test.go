@@ -81,3 +81,11 @@ func TestGenerateBoardWithMultipleColours(t *testing.T) {
 	assert.Equal(t, 12, empty_board[64].y)
 	assert.Equal(t, "", empty_board[64].colour)
 }
+
+func TestFindCellsInRow(t *testing.T) {
+	occupied_cells := []cell{}
+	emptyBoard := generate_board(occupied_cells)
+	expectedResult := []int{0, 1, 2, 3, 4}
+
+	assert.Equal(t, expectedResult, findCellsInRow(emptyBoard, 0))
+}
