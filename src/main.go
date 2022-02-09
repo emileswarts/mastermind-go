@@ -43,20 +43,48 @@ func generate_board(occupied_cells []cell) []cell {
 
 }
 
-func get_random_colour() string {
-	available_colours := [7]string{"blue", "yellow", "orange", "green", "brown", "white", "black"}
+func difference(a [7]string, b []string) []string {
+	mb := make(map[string]struct{}, len(b))
+	for _, x := range b {
+		mb[x] = struct{}{}
+	}
+	var diff []string
+	for _, x := range a {
+		if _, found := mb[x]; !found {
+			diff = append(diff, x)
+		}
+
+	}
+	return diff
+}
+
+func getRandomColour(excludeList []string) string {
+	defined_colours := [7]string{"blue", "yellow", "orange", "green", "brown", "white", "black"}
+	availableColours := difference(defined_colours, excludeList)
 
 	rand.Seed(time.Now().UnixNano())
-	return available_colours[rand.Intn(len(available_colours))]
+	return availableColours[rand.Intn(len(availableColours))]
 }
 
 func CPUCreateChallengeRow() []cell {
+	var selectedColours []string
+
+	colour1 := getRandomColour(selectedColours)
+	selectedColours = append(selectedColours, colour1)
+	colour2 := getRandomColour(selectedColours)
+	selectedColours = append(selectedColours, colour2)
+	colour3 := getRandomColour(selectedColours)
+	selectedColours = append(selectedColours, colour3)
+	colour4 := getRandomColour(selectedColours)
+	selectedColours = append(selectedColours, colour4)
+	colour5 := getRandomColour(selectedColours)
+
 	cpu_colour_choice := []cell{
-		{0, 0, get_random_colour()},
-		{1, 0, get_random_colour()},
-		{2, 0, get_random_colour()},
-		{3, 0, get_random_colour()},
-		{4, 0, get_random_colour()},
+		{0, 0, colour1},
+		{1, 0, colour2},
+		{2, 0, colour3},
+		{3, 0, colour4},
+		{4, 0, colour5},
 	}
 
 	return cpu_colour_choice

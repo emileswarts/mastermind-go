@@ -6,6 +6,20 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestGetRandomColours(t *testing.T) {
+	excludeList := []string{
+		"green",
+		"yellow",
+		"blue",
+		"orange",
+		"green",
+		"brown",
+		"white",
+	}
+
+	assert.Equal(t, "black", getRandomColour(excludeList))
+}
+
 func TestCPUCCreatehallengeRow(t *testing.T) {
 	challengeRow := CPUCreateChallengeRow()
 	assert.Equal(t, 5, len(challengeRow))
