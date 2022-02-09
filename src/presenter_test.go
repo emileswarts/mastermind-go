@@ -23,7 +23,7 @@ func TestGenerateEmptyBoard(t *testing.T) {
 	assert.Equal(t, "", empty_board[64].colour)
 }
 
-func TestGenerateBoardWithColours(t *testing.T) {
+func TestGenerateBoardWithOneColour(t *testing.T) {
 	occupied_cells := []cell{
 		cell{0, 0, "blue"},
 	}
@@ -37,6 +37,24 @@ func TestGenerateBoardWithColours(t *testing.T) {
 	assert.Equal(t, 1, empty_board[21].x)
 	assert.Equal(t, 4, empty_board[21].y)
 	assert.Equal(t, "", empty_board[21].colour)
+
+	assert.Equal(t, 4, empty_board[64].x)
+	assert.Equal(t, 12, empty_board[64].y)
+	assert.Equal(t, "", empty_board[64].colour)
+}
+
+func TestGenerateBoardWithMultipleColours(t *testing.T) {
+	occupied_cells := []cell{
+		cell{0, 0, "green"},
+		cell{1, 0, "white"},
+		cell{2, 0, "brown"},
+	}
+
+	empty_board := generate_board(occupied_cells)
+
+	assert.Equal(t, "green", empty_board[0].colour)
+	assert.Equal(t, "white", empty_board[1].colour)
+	assert.Equal(t, "brown", empty_board[2].colour)
 
 	assert.Equal(t, 4, empty_board[64].x)
 	assert.Equal(t, 12, empty_board[64].y)
