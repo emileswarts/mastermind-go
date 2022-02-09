@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math/rand"
+	"os"
 	"time"
 )
 
@@ -31,35 +33,34 @@ func findCellsInRow(board []cell, rowNumber int) []cell {
 	return cellsInRow
 }
 
-func generate_board(occupied_cells []cell) []cell {
-	default_cells := make([]cell, 65)
+func generateBoard(occupiedCells []cell) []cell {
+	board := make([]cell, 65)
 	x := 0
 	y := 0
 
-	for index := range default_cells {
-		if index == 0 {
+	for i := range board {
+		if i == 0 {
 			x = 0
 			y = 0
-		} else if index%5 == 0 {
+		} else if i%5 == 0 {
 			x = 0
 			y = y + 1
 		} else {
 			x = x + 1
 		}
 
-		default_cells[index].y = y
-		default_cells[index].x = x
+		board[i].y = y
+		board[i].x = x
 
-		for _, occupied_cell := range occupied_cells {
-			if default_cells[index].x == occupied_cell.x && default_cells[index].y == occupied_cell.y {
-				default_cells[index].colour = occupied_cell.colour
+		for _, cell := range occupiedCells {
+			if board[i].x == cell.x && board[i].y == cell.y {
+				board[i].colour = cell.colour
 			}
 
 		}
 	}
 
-	return default_cells
-
+	return board
 }
 
 func difference(a [7]string, b []string) []string {
@@ -78,8 +79,8 @@ func difference(a [7]string, b []string) []string {
 }
 
 func getRandomColour(excludeList []string) string {
-	defined_colours := [7]string{"blue", "yellow", "orange", "green", "brown", "white", "black"}
-	availableColours := difference(defined_colours, excludeList)
+	colourSet := [7]string{"blue", "yellow", "orange", "green", "brown", "white", "black"}
+	availableColours := difference(colourSet, excludeList)
 
 	rand.Seed(time.Now().UnixNano())
 	return availableColours[rand.Intn(len(availableColours))]
@@ -98,7 +99,7 @@ func CPUCreateChallengeRow() []cell {
 	selectedColours = append(selectedColours, colour4)
 	colour5 := getRandomColour(selectedColours)
 
-	cpu_colour_choice := []cell{
+	challengeRow := []cell{
 		{0, 0, colour1},
 		{1, 0, colour2},
 		{2, 0, colour3},
@@ -106,13 +107,19 @@ func CPUCreateChallengeRow() []cell {
 		{4, 0, colour5},
 	}
 
-	return cpu_colour_choice
+	return challengeRow
 }
 
 func main() {
-	occupied_cells := CPUCreateChallengeRow()
-	board := generate_board(occupied_cells)
+	occupiedCells := CPUCreateChallengeRow()
+	board := generateBoard(occupiedCells)
 	renderedBoard := render(board)
 
 	fmt.Println(renderedBoard)
+	reader := bufio.NewReader(os.Stdin)
+
+	for {
+		text, _ := reader.ReadString('\n')
+		fmt.Println(text)
+	}
 }

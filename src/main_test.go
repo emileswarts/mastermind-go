@@ -28,63 +28,63 @@ func TestCPUCCreatehallengeRow(t *testing.T) {
 }
 
 func TestGenerateEmptyBoard(t *testing.T) {
-	occupied_cells := make([]cell, 0)
-	empty_board := generate_board(occupied_cells)
+	occupiedCells := make([]cell, 0)
+	emptyBoard := generateBoard(occupiedCells)
 
-	assert.Equal(t, 0, empty_board[0].x)
-	assert.Equal(t, 0, empty_board[0].y)
-	assert.Equal(t, "", empty_board[0].colour)
+	assert.Equal(t, 0, emptyBoard[0].x)
+	assert.Equal(t, 0, emptyBoard[0].y)
+	assert.Equal(t, "", emptyBoard[0].colour)
 
-	assert.Equal(t, 1, empty_board[21].x)
-	assert.Equal(t, 4, empty_board[21].y)
-	assert.Equal(t, "", empty_board[21].colour)
+	assert.Equal(t, 1, emptyBoard[21].x)
+	assert.Equal(t, 4, emptyBoard[21].y)
+	assert.Equal(t, "", emptyBoard[21].colour)
 
-	assert.Equal(t, 4, empty_board[64].x)
-	assert.Equal(t, 12, empty_board[64].y)
-	assert.Equal(t, "", empty_board[64].colour)
+	assert.Equal(t, 4, emptyBoard[64].x)
+	assert.Equal(t, 12, emptyBoard[64].y)
+	assert.Equal(t, "", emptyBoard[64].colour)
 }
 
 func TestGenerateBoardWithOneColour(t *testing.T) {
-	occupied_cells := []cell{
+	occupiedCells := []cell{
 		{0, 0, "blue"},
 	}
 
-	empty_board := generate_board(occupied_cells)
+	emptyBoard := generateBoard(occupiedCells)
 
-	assert.Equal(t, 0, empty_board[0].x)
-	assert.Equal(t, 0, empty_board[0].y)
-	assert.Equal(t, "blue", empty_board[0].colour)
+	assert.Equal(t, 0, emptyBoard[0].x)
+	assert.Equal(t, 0, emptyBoard[0].y)
+	assert.Equal(t, "blue", emptyBoard[0].colour)
 
-	assert.Equal(t, 1, empty_board[21].x)
-	assert.Equal(t, 4, empty_board[21].y)
-	assert.Equal(t, "", empty_board[21].colour)
+	assert.Equal(t, 1, emptyBoard[21].x)
+	assert.Equal(t, 4, emptyBoard[21].y)
+	assert.Equal(t, "", emptyBoard[21].colour)
 
-	assert.Equal(t, 4, empty_board[64].x)
-	assert.Equal(t, 12, empty_board[64].y)
-	assert.Equal(t, "", empty_board[64].colour)
+	assert.Equal(t, 4, emptyBoard[64].x)
+	assert.Equal(t, 12, emptyBoard[64].y)
+	assert.Equal(t, "", emptyBoard[64].colour)
 }
 
 func TestGenerateBoardWithMultipleColours(t *testing.T) {
-	occupied_cells := []cell{
+	occupiedCells := []cell{
 		{0, 0, "green"},
 		{1, 0, "white"},
 		{2, 0, "brown"},
 	}
 
-	empty_board := generate_board(occupied_cells)
+	emptyBoard := generateBoard(occupiedCells)
 
-	assert.Equal(t, "green", empty_board[0].colour)
-	assert.Equal(t, "white", empty_board[1].colour)
-	assert.Equal(t, "brown", empty_board[2].colour)
+	assert.Equal(t, "green", emptyBoard[0].colour)
+	assert.Equal(t, "white", emptyBoard[1].colour)
+	assert.Equal(t, "brown", emptyBoard[2].colour)
 
-	assert.Equal(t, 4, empty_board[64].x)
-	assert.Equal(t, 12, empty_board[64].y)
-	assert.Equal(t, "", empty_board[64].colour)
+	assert.Equal(t, 4, emptyBoard[64].x)
+	assert.Equal(t, 12, emptyBoard[64].y)
+	assert.Equal(t, "", emptyBoard[64].colour)
 }
 
 func TestFindCellsInRow(t *testing.T) {
-	occupied_cells := []cell{}
-	emptyBoard := generate_board(occupied_cells)
+	occupiedCells := []cell{}
+	emptyBoard := generateBoard(occupiedCells)
 	expectedResult := []cell{
 		{0, 0, ""},
 		{1, 0, ""},
@@ -97,8 +97,8 @@ func TestFindCellsInRow(t *testing.T) {
 }
 
 func TestFindCPUCells(t *testing.T) {
-	occupied_cells := []cell{}
-	emptyBoard := generate_board(occupied_cells)
+	occupiedCells := []cell{}
+	emptyBoard := generateBoard(occupiedCells)
 	expectedResult := []cell{
 		{0, 0, ""},
 		{1, 0, ""},
