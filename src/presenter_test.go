@@ -8,12 +8,27 @@ import (
 
 func TestPresentBoard(t *testing.T) {
 	occupied_cells := []cell{
-		{0, 0, "green"},
-		{1, 0, "white"},
-		{2, 0, "brown"},
+		{0, 12, "green"},
+		{1, 12, "white"},
+		{2, 12, "brown"},
+		{3, 12, "blue"},
+		{4, 12, "black"},
 	}
 
-	expectedResult := ""
+	expectedResult := `|__|__|__|__|__|
+|__|__|__|__|__|
+|__|__|__|__|__|
+|__|__|__|__|__|
+|__|__|__|__|__|
+|__|__|__|__|__|
+|__|__|__|__|__|
+|__|__|__|__|__|
+|__|__|__|__|__|
+|__|__|__|__|__|
+|__|__|__|__|__|
+|__|__|__|__|__|
+|🟢|⚪|🟤|🔵|⚫|
+`
 	board := generate_board(occupied_cells)
 	renderedBoard := render(board)
 

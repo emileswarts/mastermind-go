@@ -11,10 +11,6 @@ type cell struct {
 	colour string
 }
 
-func render(board []cell) string {
-	return ""
-}
-
 func generate_board(occupied_cells []cell) []cell {
 	default_cells := make([]cell, 65)
 	x := 0
