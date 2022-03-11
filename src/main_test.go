@@ -8,16 +8,16 @@ import (
 
 func TestGetRandomColours(t *testing.T) {
 	excludeList := []string{
-		"green",
-		"yellow",
-		"blue",
-		"orange",
-		"green",
-		"brown",
-		"white",
+		"🟢",
+		"🟡",
+		"🔵",
+		"🟠",
+		"🟢",
+		"🟤",
+		"⚪",
 	}
 
-	assert.Equal(t, "black", getRandomColour(excludeList))
+	assert.Equal(t, "⚫", getRandomColour(excludeList))
 }
 
 func TestCPUCCreatehallengeRow(t *testing.T) {
@@ -46,14 +46,14 @@ func TestGenerateEmptyBoard(t *testing.T) {
 
 func TestGenerateBoardWithOneColour(t *testing.T) {
 	occupiedCells := []cell{
-		{0, 0, "blue"},
+		{0, 0, "🔵"},
 	}
 
 	emptyBoard := generateBoard(occupiedCells)
 
 	assert.Equal(t, 0, emptyBoard[0].x)
 	assert.Equal(t, 0, emptyBoard[0].y)
-	assert.Equal(t, "blue", emptyBoard[0].colour)
+	assert.Equal(t, "🔵", emptyBoard[0].colour)
 
 	assert.Equal(t, 1, emptyBoard[21].x)
 	assert.Equal(t, 4, emptyBoard[21].y)
@@ -66,16 +66,16 @@ func TestGenerateBoardWithOneColour(t *testing.T) {
 
 func TestGenerateBoardWithMultipleColours(t *testing.T) {
 	occupiedCells := []cell{
-		{0, 0, "green"},
-		{1, 0, "white"},
-		{2, 0, "brown"},
+		{0, 0, "🟢"},
+		{1, 0, "⚪"},
+		{2, 0, "🟤"},
 	}
 
 	emptyBoard := generateBoard(occupiedCells)
 
-	assert.Equal(t, "green", emptyBoard[0].colour)
-	assert.Equal(t, "white", emptyBoard[1].colour)
-	assert.Equal(t, "brown", emptyBoard[2].colour)
+	assert.Equal(t, "🟢", emptyBoard[0].colour)
+	assert.Equal(t, "⚪", emptyBoard[1].colour)
+	assert.Equal(t, "🟤", emptyBoard[2].colour)
 
 	assert.Equal(t, 4, emptyBoard[64].x)
 	assert.Equal(t, 12, emptyBoard[64].y)

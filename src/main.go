@@ -79,7 +79,7 @@ func difference(a [7]string, b []string) []string {
 }
 
 func getRandomColour(excludeList []string) string {
-	colourSet := [7]string{"blue", "yellow", "orange", "green", "brown", "white", "black"}
+	colourSet := [7]string{"🔵", "🟡", "🟠", "🟢", "🟤", "⚪", "⚫"}
 	availableColours := difference(colourSet, excludeList)
 
 	rand.Seed(time.Now().UnixNano())
@@ -119,7 +119,7 @@ func main() {
 	reader := bufio.NewReader(os.Stdin)
 
 	fmt.Println("Please enter your 5 colours")
-	fmt.Println("1 = 🔵 2 = 🟡 3 = 🟠 4 = 🟢 5 = 🟤 6 = ⚪ 7 = ⚫")
+	fmt.Println("🔵 🟡 🟠 🟢 🟤 ⚪ ⚫")
 	for {
 		text, _ := reader.ReadString('\n')
 		fmt.Println(text)

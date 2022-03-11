@@ -8,11 +8,11 @@ import (
 
 func TestPresentBoard(t *testing.T) {
 	occupied_cells := []cell{
-		{0, 12, "green"},
-		{1, 12, "white"},
-		{2, 12, "brown"},
-		{3, 12, "blue"},
-		{4, 12, "black"},
+		{0, 12, "🟢"},
+		{1, 12, "⚪"},
+		{2, 12, "🟤"},
+		{3, 12, "🔵"},
+		{4, 12, "⚫"},
 	}
 
 	expectedResult := `|__|__|__|__|__|
@@ -37,21 +37,21 @@ func TestPresentBoard(t *testing.T) {
 
 func TestPresentBoardWithTwoRows(t *testing.T) {
 	occupied_cells := []cell{
-		{0, 12, "green"},
-		{1, 12, "white"},
-		{2, 12, "brown"},
-		{3, 12, "blue"},
-		{4, 12, "black"},
-		{0, 11, "blue"},
-		{1, 11, "black"},
-		{2, 11, "brown"},
-		{3, 11, "white"},
-		{4, 11, "green"},
-		{0, 0, "orange"},
-		{1, 0, "yellow"},
-		{2, 0, "brown"},
-		{3, 0, "white"},
-		{4, 0, "green"},
+		{0, 12, "🟢"},
+		{1, 12, "⚪"},
+		{2, 12, "🟤"},
+		{3, 12, "🔵"},
+		{4, 12, "⚫"},
+		{0, 11, "🔵"},
+		{1, 11, "⚫"},
+		{2, 11, "🟤"},
+		{3, 11, "⚪"},
+		{4, 11, "🟢"},
+		{0, 0, "🟠"},
+		{1, 0, "🟡"},
+		{2, 0, "🟤"},
+		{3, 0, "⚪"},
+		{4, 0, "🟢"},
 	}
 
 	expectedResult := `|🟠|🟡|🟤|⚪|🟢|
