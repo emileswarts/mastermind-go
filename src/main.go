@@ -116,12 +116,18 @@ func main() {
 	renderedBoard := render(board)
 
 	fmt.Println(renderedBoard)
-	reader := bufio.NewReader(os.Stdin)
-
 	fmt.Println("Please enter your 5 colours")
 	fmt.Println("🔵 🟡 🟠 🟢 🟤 ⚪ ⚫")
 	for {
+		reader := bufio.NewReader(os.Stdin)
 		text, _ := reader.ReadString('\n')
-		fmt.Println(text)
+
+		board = tick(board, text)
+		renderedBoard := render(board)
+
+		fmt.Println(renderedBoard)
+		fmt.Println("Please enter your 5 colours")
+		fmt.Println("🔵 🟡 🟠 🟢 🟤 ⚪ ⚫")
+		fmt.Println("\n")
 	}
 }
