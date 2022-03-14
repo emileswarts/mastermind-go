@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"os/exec"
 	"time"
 )
 
@@ -12,25 +13,6 @@ type cell struct {
 	x      int
 	y      int
 	colour string
-}
-
-func findCPUCells(board []cell) []cell {
-	return findCellsInRow(board, 0)
-}
-
-func findCellsInRow(board []cell, rowNumber int) []cell {
-	cellsInRow := make([]cell, 5)
-
-	x := 0
-	for _, cell := range board {
-		if cell.y == rowNumber {
-			cellsInRow[x] = cell
-			x = x + 1
-		}
-
-	}
-
-	return cellsInRow
 }
 
 func generateBoard(occupiedCells []cell) []cell {
@@ -111,23 +93,35 @@ func CPUCreateChallengeRow() []cell {
 }
 
 func main() {
+	var scores []string
+	cmd := exec.Command("clear")
+	cmd.Stdout = os.Stdout
+	cmd.Run()
+
 	occupiedCells := CPUCreateChallengeRow()
 	board := generateBoard(occupiedCells)
-	renderedBoard := render(board)
+	scores = scoreRow(board, 12)
+
+	renderedBoard := render(board, scores)
 
 	fmt.Println(renderedBoard)
 	fmt.Println("Please enter your 5 colours")
 	fmt.Println("🔵 🟡 🟠 🟢 🟤 ⚪ ⚫")
-	for {
+	for i := 12; i > 0; i-- {
 		reader := bufio.NewReader(os.Stdin)
 		text, _ := reader.ReadString('\n')
 
 		board = tick(board, text)
-		renderedBoard := render(board)
+
+		scores = scoreRow(board, i)
+		renderedBoard := render(board, scores)
+
+		cmd := exec.Command("clear")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
 
 		fmt.Println(renderedBoard)
 		fmt.Println("Please enter your 5 colours")
 		fmt.Println("🔵 🟡 🟠 🟢 🟤 ⚪ ⚫")
-		fmt.Println("\n")
 	}
 }

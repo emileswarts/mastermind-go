@@ -10,6 +10,25 @@ func rightColourWrongPosition(cpuCell cell, cellsForRow []cell) bool {
 	return false
 }
 
+func findCPUCells(board []cell) []cell {
+	return findCellsInRow(board, 0)
+}
+
+func findCellsInRow(board []cell, rowNumber int) []cell {
+	cellsInRow := make([]cell, 5)
+
+	x := 0
+	for _, cell := range board {
+		if cell.y == rowNumber {
+			cellsInRow[x] = cell
+			x = x + 1
+		}
+
+	}
+
+	return cellsInRow
+}
+
 func scoreRow(currentBoard []cell, rowToTest int) []string {
 	var rowResult = make([]string, 5)
 	cellsForRow := findCellsInRow(currentBoard, rowToTest)

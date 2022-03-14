@@ -30,7 +30,8 @@ func TestPresentBoard(t *testing.T) {
 |🟢|⚪|🟤|🔵|⚫|
 `
 	board := generateBoard(occupied_cells)
-	renderedBoard := render(board)
+	scores := scoreRow(board, 12)
+	renderedBoard := render(board, scores)
 
 	assert.Equal(t, expectedResult, renderedBoard)
 }
@@ -69,7 +70,8 @@ func TestPresentBoardWithTwoRows(t *testing.T) {
 |🟢|⚪|🟤|🔵|⚫|
 `
 	board := generateBoard(occupied_cells)
-	renderedBoard := render(board)
+	scores := scoreRow(board, 12)
+	renderedBoard := render(board, scores)
 
 	assert.Equal(t, expectedResult, renderedBoard)
 }
