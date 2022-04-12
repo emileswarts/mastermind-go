@@ -13,7 +13,7 @@ func TestScoreWhenCPUNotSet(t *testing.T) {
 	board := generateBoard(occupiedCells)
 	expectedResult = scoreRow(board, 12)
 
-	assert.Equal(t, expectedResult[0], "CPU row not set")
+	assert.Equal(t, expectedResult[4], "CPU row not set")
 }
 
 func TestWinningScore(t *testing.T) {
@@ -86,11 +86,11 @@ func TestMixRightColourAndPositionScore(t *testing.T) {
 	board := generateBoard(occupiedCells)
 	score = scoreRow(board, 12)
 
-	assert.Equal(t, "⬛", score[0])
-	assert.Equal(t, "⬜", score[1])
+	assert.Equal(t, "", score[0])
+	assert.Equal(t, "⬛", score[1])
 	assert.Equal(t, "⬜", score[2])
 	assert.Equal(t, "⬜", score[3])
-	assert.Equal(t, "", score[4])
+	assert.Equal(t, "⬜", score[4])
 }
 
 func TestNoScore(t *testing.T) {
@@ -117,4 +117,11 @@ func TestNoScore(t *testing.T) {
 	assert.Equal(t, "", score[2])
 	assert.Equal(t, "", score[3])
 	assert.Equal(t, "", score[4])
+}
+
+func TestCheckWinner(t *testing.T) {
+	rowScores := []string{"⬛", "⬛", "⬛", "⬛", "⬛"}
+
+	result := checkWinner(rowScores)
+	assert.Equal(t, result, true)
 }

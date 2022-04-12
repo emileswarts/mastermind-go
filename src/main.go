@@ -93,35 +93,30 @@ func CPUCreateChallengeRow() []cell {
 }
 
 func main() {
-	var scores []string
 	cmd := exec.Command("clear")
 	cmd.Stdout = os.Stdout
 	cmd.Run()
 
 	occupiedCells := CPUCreateChallengeRow()
 	board := generateBoard(occupiedCells)
-	scores = scoreRow(board, 12)
 
-	renderedBoard := render(board, scores)
+	renderedBoard := render(board)
 
 	fmt.Println(renderedBoard)
-	fmt.Println("Please enter your 5 colours")
-	fmt.Println("🔵 🟡 🟠 🟢 🟤 ⚪ ⚫")
-	for i := 12; i > 0; i-- {
+	i := 0
+
+	for {
+		i = i + 1
 		reader := bufio.NewReader(os.Stdin)
 		text, _ := reader.ReadString('\n')
 
 		board = tick(board, text)
-
-		scores = scoreRow(board, i)
-		renderedBoard := render(board, scores)
+		renderedBoard := render(board)
 
 		cmd := exec.Command("clear")
 		cmd.Stdout = os.Stdout
 		cmd.Run()
 
 		fmt.Println(renderedBoard)
-		fmt.Println("Please enter your 5 colours")
-		fmt.Println("🔵 🟡 🟠 🟢 🟤 ⚪ ⚫")
 	}
 }

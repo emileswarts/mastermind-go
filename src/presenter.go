@@ -1,26 +1,35 @@
 package main
 
-import "fmt"
+func render(board []cell) string {
+	var presentedBoard string
 
-func render(board []cell, scores []string) string {
-	var presented_board string
-
-	for i, cell := range board {
-		if i%5 == 0 && i != 0 {
-			for _, score := range scores {
-				presented_board += "| " + score
-			}
-
-			presented_board += "|\n"
+	for _, cell := range board {
+		if cell.colour != "" {
+			presentedBoard += "|" + cell.colour
 		}
 
-		if cell.colour != "" {
-			presented_board += fmt.Sprintf("|%s", cell.colour)
-		} else {
-			presented_board += "|__"
+		if cell.colour == "" {
+			presentedBoard += "|__"
+		}
+
+		if cell.x == 4 {
+			if cell.y != 0 {
+				rowScore := scoreRow(board, cell.y)
+
+				if checkWinner(rowScore) {
+					return "You are a winner!"
+				}
+
+				for _, scoreItem := range rowScore {
+					presentedBoard += "|" + scoreItem
+				}
+			}
+			presentedBoard += "|\n"
 		}
 	}
 
-	presented_board += "| | | | | |\n"
-	return presented_board
+	presentedBoard += "Please enter your 5 colours\n"
+	presentedBoard += "🔵 🟡 🟠 🟢 🟤 ⚪ ⚫"
+
+	return presentedBoard
 }

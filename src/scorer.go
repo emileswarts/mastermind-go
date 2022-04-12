@@ -1,5 +1,24 @@
 package main
 
+import (
+	"sort"
+)
+
+func checkWinner(score []string) bool {
+	winningCombo := []string{"⬛", "⬛", "⬛", "⬛", "⬛"}
+
+	if len(score) != len(winningCombo) {
+		return false
+	}
+
+	for i := range score {
+		if score[i] != winningCombo[i] {
+			return false
+		}
+	}
+	return true
+}
+
 func rightColourWrongPosition(cpuCell cell, cellsForRow []cell) bool {
 	for _, cell := range cellsForRow {
 		if cell.colour == cpuCell.colour {
@@ -38,11 +57,14 @@ func scoreRow(currentBoard []cell, rowToTest int) []string {
 		if cpuCell.colour == "" {
 			rowResult[0] = "CPU row not set"
 		} else if cellsForRow[i].x == cpuCell.x && cellsForRow[i].colour == cpuCell.colour {
-			rowResult[i] = "⬛"
+			rowResult[cellsForRow[i].x] = "⬛"
 		} else if rightColourWrongPosition(cpuCell, cellsForRow) {
-			rowResult[i] = "⬜"
+			rowResult[cellsForRow[i].x] = "⬜"
+		} else {
+			rowResult[cellsForRow[i].x] = ""
 		}
 	}
 
+	sort.Strings(rowResult)
 	return rowResult
 }
