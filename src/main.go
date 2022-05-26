@@ -3,10 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math/rand"
 	"os"
 	"os/exec"
-	"time"
 )
 
 type cell struct {
@@ -59,15 +57,6 @@ func difference(a [7]string, b []string) []string {
 	}
 	return diff
 }
-
-func getRandomColour(excludeList []string) string {
-	colourSet := [7]string{"🔵", "🟡", "🟠", "🟢", "🟤", "⚪", "⚫"}
-	availableColours := difference(colourSet, excludeList)
-
-	rand.Seed(time.Now().UnixNano())
-	return availableColours[rand.Intn(len(availableColours))]
-}
-
 func CPUCreateChallengeRow() []cell {
 	var selectedColours []string
 
