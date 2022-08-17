@@ -81,7 +81,7 @@ func CPUCreateChallengeRow() []cell {
 	return challengeRow
 }
 
-func main() {
+func playUser() {
 	cmd := exec.Command("clear")
 	cmd.Stdout = os.Stdout
 	cmd.Run()
@@ -108,4 +108,8 @@ func main() {
 
 		fmt.Println(renderedBoard)
 	}
+}
+
+func main() {
+	playUser()
 }

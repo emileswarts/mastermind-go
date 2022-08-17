@@ -10,8 +10,8 @@ test: build
 serve: build
 	docker-compose run app sh -c "sleep infinity"
 
-run: 
-	docker-compose up
+run: stop
+	docker-compose up --build
 
 shell: 
 	docker-compose run app bash
